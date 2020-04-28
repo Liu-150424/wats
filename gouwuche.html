@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<link rel="stylesheet" type="text/css" href="css/gouwuche.css" />
+		<link rel="stylesheet" type="text/css" href="css/zzsc.css" />
+		<script src="https://upcdn.b0.upaiyun.com/libs/jquery/jquery-2.0.2.min.js"></script>
+	</head>
+	<body>
+		<div id="max">
+			<div id="color">
+				<div id="max_text">
+					<p>xx商城</p>
+				</div>
+				<div class="nav-text">
+					<p>当前位置--->我的购物车</p>
+				</div>
+				<div id="nav">
+					<ul>
+						<p>
+							<li><input type="checkbox" name="opo" id="das" value="" autocomplete="off" />全选</li>
+							<li>商品</li>
+						</p>
+						<span>
+							<li>单价</li>
+							<li>数量</li>
+							<li>小计</li>
+							<li>操作</li>
+						</span>
+					</ul>
+					<div id="money">
+						<div id="money_yrt">
+							<ul class="a">
+								<p>
+									<li><input type="checkbox" name="" id="sd" value="" autocomplete="off" /></li>
+									<li><img src="img/4.png"></li>
+								</p>
+								<span>
+									<li id="mas">100</li>
+									<li>
+										<button type="button" id="bot">-</button>
+										<input type="text" name="" id="nub" value="0" autocomplete="off" />
+										<button type="button" class="takes">+</button>
+									</li>
+									<li id="mos">0</li>
+									<li id="del">删除</li>
+								</span>
+							</ul>
+						</div>
+						<div id="vote_wit">
+							<ul class="a">
+								<p>
+									<li><input type="checkbox" name="" id="sd" value="" autocomplete="off" /></li>
+									<li><img src="img/5.png"></li>
+								</p>
+								<span>
+									<li id="mas">200</li>
+									<li>
+										<button type="button" id="bot" name="as">-</button>
+										<input type="text" name="" id="nub" value="0" autocomplete="off" />
+										<button type="button" class="takes">+</button>
+									</li>
+									<li id="mos">0</li>
+									<li id="del">删除</li>
+								</span>
+							</ul>
+						</div>
+						<div id="hot_tix">
+							<ul class="a">
+								<p>
+									<li><input type="checkbox" name="" id="sd" value="" autocomplete="off" /></li>
+									<li><img src="img/3.png"></li>
+								</p>
+								<span>
+									<li id="mas">300</li>
+									<li>
+										<button type="button" id="bot">-</button>
+										<input type="text" name="" id="nub" value="0" autocomplete="off" />
+										<button type="button" class="takes">+</button>
+									</li>
+									<li id="mos">0</li>
+									<li id="del">删除</li>
+								</span>
+							</ul>
+						</div>
+						<div class="text">
+							<p id="maxdel">删除选中商品</p>
+						</div>
+						<div class="texts">
+							<strong>总共选中了<a class="mona">0</a>件商品 总记：<a class='way_money'>0</a></strong>
+							<button type="button" id="buts">去结算</button>
+						</div>
+
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- 代码 开始 -->
+
+		<div class="wrapper top-main clearfix">
+
+			<div class="main tab mt15">
+
+				<!--切换图片-->
+
+				<div class="slide">
+
+					<ul id="bigSlideUl" class="slide-ul clearfix">
+						<li>
+							<img class="op" width="230" height="350" src="" />
+
+							<span class="pic-txt"> </span></li>
+
+						<li>
+
+							<img class="op"  width="230" height="350" src="" />
+
+							<span class="pic-txt"> </span></li>
+
+						<li>
+							<img class="op" width="230" height="350" src="" />
+
+							<span class="pic-txt"> </span></li>
+						<li>
+							<img class="op"  width="230" height="350" src="" />
+
+							<span class="pic-txt"> </span></li>
+						<li>
+							<img class="op"  width="230" height="350" src="" />
+
+							<span class="pic-txt"> </span></li>
+						<li>
+							<img class="op"  width="230" height="350" src="" />
+
+							<span class="pic-txt"> </span></li>
+					</ul>
+				</div>
+
+				<!--slide 切换按钮-->
+				<ul id="smallSlideUl" class="info-btn clearfix">
+					<li class="info-cur" id="mypic0" sid="0"><span>1</span></li>
+					<li id="mypic1" sid="1"><span>2</span></li>
+				</ul>
+				<em class="tab-shadow"></em>
+			</div>
+		</div>
+		<script src="js/jquery-1.7.1.min.js"></script>
+		<script type="text/javascript" src="js/zzsc.js"></script>
+		<!-- 代码 结束 -->
+		</div>
+	</body>
+</html>
+<script type="text/javascript">
+	$(document).ready(function() {
+		$('[id=del]').each(function() {
+			$(this).click(function() {
+				$(this).parents('ul').hide()
+			})
+		})
+
+
+		$('.takes').each(function() {
+			$(this).click(function() {
+				var opes = $(this).siblings('[id=nub]').val();
+				var lpes = $(this).parent().siblings('[id=mas]').text();
+				opes++;
+				$(this).siblings('[id=nub]').val(opes);
+				total = lpes * opes
+				$(this).parent().siblings('[id=mos]').text(total)
+				text();
+				wot()
+			})
+
+		})
+		$('[id=bot]').each(function() {
+
+			$(this).click(function() {
+				var ope = $(this).siblings('[id=nub]').val();
+				var lpese = $(this).parent().siblings('[id=mas]').text();
+				ope--;
+				$(this).siblings('[id=nub]').val(ope);
+				tale = lpese * ope
+				$(this).parent().siblings('[id=mos]').text(tale)
+				text()
+				wot()
+			})
+		})
+		$(function() {
+			$('[id=sd]').each(function() {
+				$(this).click(function() {
+					if (this.checked == true) {
+						text()
+						wot()
+					} else {
+						text()
+						wot()
+					}
+				})
+			})
+		})
+		//全选
+		$('#das').click(function() {
+			var ioe = true;
+			$('[id=sd]').each(function() {
+				if (this.checked == false) {
+					ioe = false
+				}
+			})
+			if (ioe == true) {
+				$('[id=sd]').removeAttr('checked');
+				text()
+				wot()
+			} else {
+				$('[id=sd]').prop('checked', true)
+				text();
+				wot()
+			}
+		})
+	})
+
+	function text() {
+		var num = 0;
+		$('[id=sd]').each(function() {
+			if (this.checked == true) {
+				var b = $(this).parent().parent().find('#nub').val()
+				num += parseInt(b);
+			}
+			$('.mona').text(num)
+		})
+	}
+
+	function wot() {
+		var indexs = 0;
+		$('[id=sd]').each(function() {
+			if (this.checked == true) {
+				var lo = $(this).parent().parent().find('#mos').text()
+				indexs += parseInt(lo);
+			}
+			$('.way_money').text(indexs)
+		})
+	}
+	$('#maxdel').click(function() {
+		$('[id=sd]').each(function() {
+			if (this.checked == true) {
+				$(this).parent().parent().parent().hide()
+			}
+		})
+	})
+	var att = ["https://dawn.changxvan.top/Data/UploadFiles/adv/20170524/1495588800716222.jpg","https://dawn.changxvan.top/Data/UploadFiles/adv/20170525/1495684434521009.jpg"];
+	$.ajax({
+		url: 'https://dawn.changxvan.top/api/',
+		async: true,
+		data: {
+			轮播图: focus
+		},
+		dataType: 'JSON',
+		success: function(res) {
+			var pic = res.focus
+			pic.forEach(function(val) {
+				att.push(val.photo)
+			})
+			console.log(att)
+			var ad = document.querySelectorAll('.op');
+			for(i=0;i<ad.length;i++){
+				ad[i].src = att[i]
+			}
+		},
+		error: (function() {
+			console.log('err')
+		})()
+	})
+</script>

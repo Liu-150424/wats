@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<script src="https://upcdn.b0.upaiyun.com/libs/jquery/jquery-2.0.2.min.js"></script>
+		<style type="text/css">
+		*{
+		     margin: 0;
+		     padding: 0;
+		 }
+		   
+		li{
+		    list-style: none;
+		}   
+		.outer{
+		     height: 470px;
+		     width: 590px;
+		     margin: 50px auto;
+		     position:relative;
+		 }
+		 .img li{
+		     position: absolute;
+		     top: 0;
+		     left: 0;
+		 }
+		 .num{
+		     position: absolute;
+		     text-align: center;
+		     width: 100%;
+		     bottom: 20px;
+		 }
+		 .num li{
+		     display: inline-block;
+		     width: 20px;
+		     height: 20px;
+		     background-color: darkgray;
+		     color: white;
+		     text-align: center;
+		     line-height: 20px;
+		     margin: 0 20px;
+		 }
+		 .btn{
+		     position: absolute;
+		     width: 20px;
+		     height: 50px;
+		     background-color: darkgray;
+		     color: white;
+		     text-align: center;
+		     line-height: 50px;
+		     top: 50%;
+		     margin-top: -25px;
+		     display: none;
+		 }
+		 .left_btn{
+		     left: 0;
+		 }
+		 .right_btn{
+		     right: 0;
+		 }
+		 .outer:hover .btn{
+		     display: inline-block;
+		     cursor: pointer;
+		 }
+		 .current{
+		     background-color: yellow!important;
+		 }
+						.img img{
+							width: 600px;
+							height: 400px;
+						}
+		</style>
+	</head>
+	<body>
+		<div class="outer">
+		<ul class="img">
+		    <li><a><img id="op" src=""></a></li>
+		    <li><a><img id="op" src=""></a></li>
+		    <li><a><img id="op" src=""></a></li>
+		    <li><a><img id="op" src=""></a></li>
+		</ul>
+		 
+		 
+		<ul class="num">
+		    <li class="current">1</li>
+		    <li>2</li>
+		    <li>3</li>
+		    <li>4</li>
+		</ul>
+		 
+		<div class="left_btn btn"><</div>
+		<div class="right_btn btn">></div>
+			</div>
+	</body>
+</html>
+<script type="text/javascript">
+	var att = [];
+	$.ajax({
+		url: 'https://dawn.changxvan.top/api/',
+		async: true,
+		data: {
+			轮播图: focus
+		},
+		dataType: 'JSON',
+		success: function(res) {
+			var pic = res.focus
+			pic.forEach(function(val) {
+				att.push(val.photo)
+			})
+			console.log(att)
+			var ad = document.querySelectorAll('#op');
+			for(i=0;i<ad.length;i++){
+				ad[i].src = att[i]
+			}
+		},
+		error: (function() {
+			console.log('err')
+		})()
+	})
+	
+	
+		    var index=0;
+		     
+		    $(".num li").mousemove(function () {
+		            $(this).addClass("current").siblings().removeClass("current");
+		            index=$(this).index();
+		            $(".img li").eq(index).stop().fadeIn(1000).siblings().stop().fadeOut(1000);
+		    });
+		    
+		    var time=setInterval(move,1000);
+		    function move() {
+		        index++;
+		        if (index==4){
+		            index=0
+		        }
+		        $(".num li").eq(index).addClass("current").siblings().removeClass("current");
+		        $(".img li").eq(index).stop().fadeIn(1000).siblings().stop().fadeOut(1000);
+		    };
+		   
+		    $(".outer").hover(function () {
+		        clearInterval(time);
+		    },
+		    function () {
+		        time=setInterval(move,1000);
+		    });
+		     
+		    $(".right_btn").click(function () {
+		       move();
+		    });
+		     
+		    function moveL() {
+		         index--;
+		        if (index==-1){
+		            index=3
+		        }
+		        $(".num li").eq(index).addClass("current").siblings().removeClass("current");
+		        $(".img li").eq(index).stop().fadeIn(1000).siblings().stop().fadeOut(1000);
+		    }
+		    $(".left_btn").click(function () {
+		        moveL();
+		    });
+		
+</script>
